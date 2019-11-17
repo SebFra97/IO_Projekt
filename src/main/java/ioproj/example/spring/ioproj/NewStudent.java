@@ -7,13 +7,13 @@ public class NewStudent {
 
     @JsonProperty("name") public final String name;
     @JsonProperty("number")public final String number;
-    @JsonProperty("grupa")public final String grupa;
+    @JsonProperty("grupa")public final String group1;
 
     @JsonCreator
-    public NewStudent(String name, String number, String grupa) {
+    public NewStudent(String name, String number, String group1) {
         this.name = name;
         this.number = number;
-        this.grupa = grupa;
+        this.group1 = group1;
 
     }
 }

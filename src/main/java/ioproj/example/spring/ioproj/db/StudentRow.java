@@ -1,12 +1,23 @@
 package ioproj.example.spring.ioproj.db;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class StudentRow {
 
+    protected StudentRow(){}
+
+    public StudentRow( String name, String number, String group1) {
+        this.name = name;
+        this.number = number;
+        this.group1 = group1;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;

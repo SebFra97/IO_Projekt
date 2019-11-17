@@ -14,7 +14,14 @@ public class PunktyController {
 
     //private CopyOnWriteArrayList<String> students = new CopyOnWriteArrayList<>(Arrays.asList("Student 1" , "Student 2", "Student 3"));
 
-    private StudentService service = new StudentService();
+    //private StudentService service = new StudentService(repository);
+
+    public PunktyController(StudentService service) {
+        this.service = service;
+    }
+
+    private final StudentService service;
+
 
     @RequestMapping(value = "/students", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     List<Student> getUsers() {
