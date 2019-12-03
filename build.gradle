@@ -18,7 +18,8 @@ dependencies {
 	compile group: 'io.vavr', name: 'vavr', version: '0.10.2'
 	// https://mvnrepository.com/artifact/com.h2database/h2
 	testCompile group: 'com.h2database', name: 'h2', version: '1.4.199'
-
+	compile 'io.springfox:springfox-swagger2:2.9.2'
+	compile 'io.springfox:springfox-swagger-ui:2.9.2'
 
 }
 

@@ -1,10 +1,10 @@
-package ioproj.example.spring.ioproj;
+package ioproj.example.spring.ioproj.punkty;
 
+import ioproj.example.spring.ioproj.NewStudent;
+import ioproj.example.spring.ioproj.Student;
+import ioproj.example.spring.ioproj.StudentService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +32,13 @@ public class PunktyController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     Student addStudent(@RequestBody NewStudent student) {
         return this.service.addStudent(student);
+    }
+
+
+    @RequestMapping(value = "/students/{id}/number/{number}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Student setNumber(@PathVariable("id") long id, @PathVariable("number") String number) {
+        return this.service.changeNumber(id, number).orElseThrow(
+                () -> new IllegalArgumentException("Student o id: " + id + " does not exist") );
     }
 
 }
