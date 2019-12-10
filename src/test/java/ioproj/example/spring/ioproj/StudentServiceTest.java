@@ -1,6 +1,7 @@
 package ioproj.example.spring.ioproj;
 
 import io.vavr.collection.List;
+import ioproj.example.spring.ioproj.db.ScoreRepository;
 import ioproj.example.spring.ioproj.db.StudentRepository;
 import org.junit.After;
 import org.junit.Test;
@@ -17,18 +18,20 @@ public class StudentServiceTest {
 
     @Autowired
     private StudentRepository repository;
+    @Autowired
+    private ScoreRepository scoreRepository;
 
 @Test
     public void getEmptyList() {
 
-    final StudentService service = new StudentService(repository);
+    final StudentService service = new StudentService(repository, scoreRepository);
     List<Student> students = service.getStudents();
     assertTrue(students.isEmpty());
     }
 
 @Test
     public void addStudent() {
-    final StudentService service = new StudentService(repository);
+    final StudentService service = new StudentService(repository, scoreRepository);
     final Student created = service.addStudent(new NewStudent("Student1","1-2-3","IP"));
     assertNotNull(created);
 
@@ -37,7 +40,7 @@ public class StudentServiceTest {
 @Test
     public void addStudentIsReturned() {
 
-    final StudentService service = new StudentService(repository);
+    final StudentService service = new StudentService(repository, scoreRepository);
     final Student created = service.addStudent(new NewStudent("StudentTestowy","1-2-3","IP31"));
     final List<Student> all = service.getStudents();
 
@@ -46,7 +49,7 @@ public class StudentServiceTest {
 
 @Test
     public void addStudentHasNewId() {
-    final StudentService service = new StudentService(repository);
+    final StudentService service = new StudentService(repository, scoreRepository);
     final Student created = service.addStudent(new NewStudent("StudentTestowy","1-2-3","IP31"));
     final Student created2 = service.addStudent(new NewStudent("StudentTestowy2","3-5-8","IP32"));
 
